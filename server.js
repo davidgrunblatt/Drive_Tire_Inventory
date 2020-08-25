@@ -26,6 +26,8 @@ app.get('/', (req, res) => {
     res.send('Working Queen');
 });
 
+app.use(express.static('/public'));
+
 // import tire model
 const Tire = require('./model');
 
