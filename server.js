@@ -24,8 +24,12 @@ app.use(bodyP.urlencoded());
 
 // ROUTES
 const cdn = require('./routes');
-app.use(express.static('public'));
 app.use('/api/retrieve_tires', cdn);
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('public')); 
+}
+
 
 // import tire model
 const Tire = require('./model');
