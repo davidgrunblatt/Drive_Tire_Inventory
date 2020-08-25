@@ -22,14 +22,14 @@ mongoose.connect('mongodb+srv://dpg1919:Claptoncocaine13@cluster0.qf6dh.mongodb.
 .catch(ex => console.log('The mongoose is dead :/', ex));
 
 // ROUTES
-app.use(express.static('/public'));
+app.use(express.static('public'));
 
 // import tire model
 const Tire = require('./model');
 
-app.post('/api/cdn', async (req, res) => {
+app.post('/api/create_tire', async (req, res) => {
     const new_tire = new Tire({
-        tireID: 0,
+        tireID: 1,
         width: 100,
         Aspect: 20,
         Rim: 100,
@@ -49,4 +49,10 @@ app.post('/api/cdn', async (req, res) => {
 
     const save = await new_tire.save();
     res.send(save);
+});
+
+app.get('/api/retrieve_tires', async (req, res) => {
+    const t = await Tire.find({});
+    
+    res.send(t);
 });
