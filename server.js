@@ -7,11 +7,6 @@ const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server is live on ${PORT}`));
 
-// Middleware
-app.use(cors());
-app.use(bodyP.json());
-app.use(bodyP.urlencoded());
-
 // MongoDB Setup
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://dpg1919:Claptoncocaine13@cluster0.qf6dh.mongodb.net/tireInventory?retryWrites=true&w=majority', {
@@ -20,6 +15,12 @@ mongoose.connect('mongodb+srv://dpg1919:Claptoncocaine13@cluster0.qf6dh.mongodb.
 })
 .then(() => console.log('Mongoose is running!'))
 .catch(ex => console.log('The mongoose is dead :/', ex));
+
+
+// Middleware
+app.use(cors());
+app.use(bodyP.json());
+app.use(bodyP.urlencoded());
 
 // ROUTES
 app.use(express.static('public'));
