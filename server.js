@@ -22,9 +22,7 @@ mongoose.connect('mongodb+srv://dpg1919:Claptoncocaine13@cluster0.qf6dh.mongodb.
 .catch(ex => console.log('The mongoose is dead :/', ex));
 
 // ROUTES
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-});
+app.use(express.static('public'));
 
 // import tire model
 const Tire = require('./model');
