@@ -3,12 +3,9 @@ const router = express.Router();
 const Tire = require('./model');
 
 router.get('/', async (req, res) => {
-    const bleh = {
-        id: 0,
-        name: 'Bridgestone'
-    }
-
-    res.send(bleh);
+    const t = await Tire.find({})
+    .then(d => res.send(d))
+    .catch(ex => console.log(ex));
 });
 
 module.exports = router;
