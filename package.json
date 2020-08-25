@@ -4,8 +4,9 @@
   "description": "Tire Inventory System",
   "main": "index.js",
   "scripts": {
-    "test": "npm run server.js",
-    "server": "nodemon server.js"
+    "test": "node server.js",
+    "server": "nodemon server.js",
+    "start":"npm run server.js"
   },
   "author": "David G.",
   "license": "ISC",
