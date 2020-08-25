@@ -4,8 +4,8 @@ const express = require('express');
 const app = express();
 const bodyP = require('body-parser');
 const cors = require('cors');
-const port = process.env.port || 3001;
-app.listen(port, () => console.log(`Server is live on ${port}`));
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Server is live on ${PORT}`));
 
 // Middleware
 app.use(cors());
