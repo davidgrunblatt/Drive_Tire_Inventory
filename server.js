@@ -9,7 +9,7 @@ app.listen(PORT, () => console.log(`Server is live on ${PORT}`));
 
 // MongoDB Setup
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://dpg1919:Claptoncocaine13@cluster0.qf6dh.mongodb.net/tireInventory?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGO, {
     useUnifiedTopology: true,
     useNewUrlParser: true 
 })
