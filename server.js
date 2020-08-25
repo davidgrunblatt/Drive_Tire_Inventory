@@ -23,7 +23,9 @@ app.use(bodyP.json());
 app.use(bodyP.urlencoded());
 
 // ROUTES
+const cdn = require('./routes');
 app.use(express.static('public'));
+app.use('/api/retrieve_tires', cdn);
 
 // import tire model
 const Tire = require('./model');
@@ -50,10 +52,4 @@ app.post('/api/create_tire', async (req, res) => {
 
     const save = await new_tire.save();
     res.send(save);
-});
-
-app.get('/api/retrieve_tires', async (req, res) => {
-    const t = await Tire.find({});
-    
-    res.send(t);
 });
