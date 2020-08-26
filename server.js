@@ -33,6 +33,22 @@ const cdn = require('./routes');
 // retrieve tires
 app.use('/api/retrieve_tires', cdn);
 
+// retrieve by all
+app.get('/api/retrieve_by_both', async (req, res) => {
+    try {
+        const find = await Tire.find({
+            "Brand": req.query.brand,
+            "width": req.query.width,
+            "Aspect": req.query.aspect
+        });
+    
+        res.send(find);
+    }
+    catch(ex) {
+        res.status(404).send('Could not find any matches');
+    }
+});
+
 // retrieve by size
 app.get('/api/retrieve_by_size', async (req,res) => {
     try {
@@ -54,10 +70,17 @@ app.get('/api/retrieve_by_brand', async (req,res) => {
         const find = await Tire.find({
             "Brand": req.query.brand
         });
-        console.log(find);
+
+        if(!find) {
+            const message = {
+                msg: 'Not matches found...'
+            }
+            res.send(message);
+        }
         res.send(find);
     }
     catch(ex) {
+        res.status(404).send('Could not match your request');
         console.log(ex);
     }
 });
@@ -65,11 +88,11 @@ app.get('/api/retrieve_by_brand', async (req,res) => {
 
 app.post('/api/create_tire', async (req, res) => {
     const new_tire = new Tire({
-        tireID: 4,
-        width: 100,
+        tireID: 6,
+        width: 120,
         Aspect: 20,
         Rim: 100,
-        Brand: 'Michelin',
+        Brand: 'GoodYear',
         Model: 'AST',
         Speed: '120mph',
         Tread: 'durable',
